@@ -1,0 +1,31 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  list-style: none;
+}
+
+a{
+  color: #000;
+  text-decoration: none;
+}
+
+a:visited{
+  color: #000;
+}
+
+body{
+  font-size: 12px;
+  background: rgb(0,27,102);
+  background: linear-gradient(280deg, rgba(0,27,102,1) 0%, rgba(69,44,221,1) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10vh 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
