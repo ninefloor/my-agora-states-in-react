@@ -31,11 +31,19 @@ function Pagination({ total, limit, page, setPage }) {
       {Array(totalPage) // 페이지 수 만큼 배열 생성
         .fill() // 요소 값 채우기 (undefined)
         .map((list, index) => { // li 내의 button 매핑
-          return (
-            <li className="page__wrapper--list" key={index}>
-              <button href="#" onClick={() => setPage(index + 1)}>{index + 1}</button>
-            </li>
-          );
+          if(index + 1 === page){ // 렌더한 리스트가 현재 페이지라면 active 클래스도 같이
+            return (
+              <li className="page__wrapper--list active" key={index}>
+                <button href="#" onClick={() => setPage(index + 1)}>{index + 1}</button>
+              </li>
+            );
+          } else { // 아니라면 일반적으로 출력
+            return (
+              <li className="page__wrapper--list" key={index}>
+                <button href="#" onClick={() => setPage(index + 1)}>{index + 1}</button>
+              </li>
+            );
+          }
         })}
     </ul>
   );
