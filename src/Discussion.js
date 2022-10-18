@@ -1,23 +1,52 @@
-function Discussion() {
+import reply from "./reply-solid.svg"
+
+function Discussion({ tweet }) {
+  function AnswerDiscussion({ answer }) {
+    return (
+      <div className="discussion__answered">
+        <div className="discussion__answered--reply">
+          <img src={reply} alt="reply icon" />
+        </div>
+        <div className="discussion__answered--content">
+          <p className="discussion__answered--title">
+            <a href={answer.url}>
+              {`${answer.bodyHTML
+                .replace(/(<([^>]+)>)/gi, "")
+                .slice(0, 120)}...`}
+            </a>
+          </p>
+          <div className="discussion__answered--information">
+            {answer.author} / {new Date(answer.createdAt).toLocaleString()}
+          </div>
+        </div>
+        <div className="discussion__answared--avatar--wrapper">
+          <img
+            className="discussion__answared--avatar--image"
+            src={answer.avatarUrl}
+            alt={`avatar of ${answer.author}`}
+          />
+        </div>
+      </div>
+    );
+  }
   return (
     <li className="discussion__container">
       <div className="discussion__avatar--wrapper">
         <img
           className="discussion__avatar--image"
-          src="https://avatars.githubusercontent.com/u/12145019?s=64&u=5c97f25ee02d87898457e23c0e61b884241838e3&v=4"
-          alt="avatar of kimploo"
+          src={tweet.avatarUrl}
+          alt={`avatar of ${tweet.author}`}
         />
       </div>
       <div className="discussion__content">
         <h2 className="discussion__title">
-          <a href="https://github.com/codestates-seb/agora-states-fe/discussions/6">
-            [notice] 좋은 질문하는 법
-          </a>
+          <a href={tweet.url}>{tweet.title}</a>
         </h2>
         <div className="discussion__information">
-          kimploo / 2022. 4. 22. 오후 02:08:33
+          {tweet.author} / {new Date(tweet.createdAt).toLocaleString()}
         </div>
       </div>
+      {tweet.answer ? <AnswerDiscussion answer={tweet.answer} /> : undefined}
     </li>
   );
 }

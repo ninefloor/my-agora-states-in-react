@@ -1,10 +1,14 @@
 import Discussion from "./Discussion";
 
-function Discussions() {
+function Discussions({ data }) {
   return (
     <section className="discussion__wrapper">
       <ul className="discussions__container">
-        <Discussion />
+        {
+        data.map(tweet => {
+          return <Discussion tweet={tweet} id={tweet.id}/>
+        })
+        }
       </ul>
     </section>
   );
