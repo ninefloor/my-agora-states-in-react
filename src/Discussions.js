@@ -6,7 +6,7 @@ function Discussions({ data }) {
       <ul className="discussions__container">
         {
         data.map(tweet => {
-          return <Discussion tweet={tweet} id={tweet.id}/>
+          return <Discussion tweet={tweet} key={tweet.id}/>
         })
         }
       </ul>
