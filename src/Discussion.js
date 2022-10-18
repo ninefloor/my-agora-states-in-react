@@ -1,34 +1,6 @@
-import reply from "./reply-solid.svg"
+import reply from "./reply-solid.svg";
 
 function Discussion({ tweet }) {
-  function AnswerDiscussion({ answer }) {
-    return (
-      <div className="discussion__answered">
-        <div className="discussion__answered--reply">
-          <img src={reply} alt="reply icon" />
-        </div>
-        <div className="discussion__answered--content">
-          <p className="discussion__answered--title">
-            <a href={answer.url}>
-              {`${answer.bodyHTML
-                .replace(/(<([^>]+)>)/gi, "")
-                .slice(0, 120)}...`}
-            </a>
-          </p>
-          <div className="discussion__answered--information">
-            {answer.author} / {new Date(answer.createdAt).toLocaleString()}
-          </div>
-        </div>
-        <div className="discussion__answared--avatar--wrapper">
-          <img
-            className="discussion__answared--avatar--image"
-            src={answer.avatarUrl}
-            alt={`avatar of ${answer.author}`}
-          />
-        </div>
-      </div>
-    );
-  }
   return (
     <li className="discussion__container">
       <div className="discussion__avatar--wrapper">
@@ -48,6 +20,33 @@ function Discussion({ tweet }) {
       </div>
       {tweet.answer ? <AnswerDiscussion answer={tweet.answer} /> : undefined}
     </li>
+  );
+}
+
+function AnswerDiscussion({ answer }) {
+  return (
+    <div className="discussion__answered">
+      <div className="discussion__answered--reply">
+        <img src={reply} alt="reply icon" />
+      </div>
+      <div className="discussion__answered--content">
+        <p className="discussion__answered--title">
+          <a href={answer.url}>
+            {`${answer.bodyHTML.replace(/(<([^>]+)>)/gi, "").slice(0, 120)}...`}
+          </a>
+        </p>
+        <div className="discussion__answered--information">
+          {answer.author} / {new Date(answer.createdAt).toLocaleString()}
+        </div>
+      </div>
+      <div className="discussion__answared--avatar--wrapper">
+        <img
+          className="discussion__answared--avatar--image"
+          src={answer.avatarUrl}
+          alt={`avatar of ${answer.author}`}
+        />
+      </div>
+    </div>
   );
 }
 
